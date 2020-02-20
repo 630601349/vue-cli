@@ -1,0 +1,7 @@
+var baseURL = ""
+
+
+export {
+    baseURL
+}
+
