@@ -14,6 +14,7 @@ import "mint-ui/lib/style.css"
 import MyHeader from './components/obj1/myHeader'
 import MyFoot from './components/obj1/myFoot'
 import "element-ui/lib/theme-chalk/index.css"
+import "./assets/css/normalize_zh.css"
 
 Vue.component("myheader",MyHeader)
 
