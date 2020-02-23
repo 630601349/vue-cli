@@ -18,19 +18,34 @@ export default {
     },
     methods:{
         login(){
-            let u = this.uname;
-            let p = this.upwd;
+            let uname = this.uname;
+            let upwd = this.upwd;
 
+            let url = "login"
             let reg = /[a-z0-9]{3,12}/i;
+            let obj = {uname,upwd}
 
-            if(!reg.test(u)){
-                this.$messagebox("消息","用户名格式不正确")
-            } else if (!reg.test(p)){
-                this.$messagebox("消息","密码格式不正确")
+            if(!reg.test(uname)){
+                this.$messagebox("消息","用户名格式不正确");
+                return;
+            } else if (!reg.test(upwd)){
+                this.$messagebox("消息","密码格式不正确");
+                return;
             } else {
-                this.$toast("登录成功")
-                this.$router.push('/')
+                this.axios.get(url,{params:obj})
+                .then(res=>{
+                    if (res.data.code == 1) {
+                        this.$toast("登录成功");
+                        this.$router.push("/")
+                    }else if (res.data.code == -1) {
+                        this.$messagebox("消息","用户名或密码错误")
+                    }
+                })
             }
+
+            
+
+            
         }
     }
 }
